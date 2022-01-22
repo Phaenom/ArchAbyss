@@ -14,10 +14,10 @@ echo -ne "
 -------------------------------------------------------------------------
 "
 
-sudo pacman -Syu --needed --noconfirm - < pkg-files/pacman-pkgs.txt
-sudo fc-cache -f -v
+pacman -Syu --needed --noconfirm - < pkg-files/pacman-pkgs.txt
+#fc-cache -f -v
 
-cp -r .xinitrc /etc/X11/xinit/xinitrc
+#cp -r .xinitrc /etc/X11/xinit/xinitrc
 
 echo -ne "
 -------------------------------------------------------------------------
@@ -31,10 +31,10 @@ echo -ne "
                     Setting up SDDM Theme
 -------------------------------------------------------------------------
 "
-cat <<EOF > /etc/sddm.conf
-[Theme]
-Current=Nordic
-EOF
+#cat <<EOF > /etc/sddm.conf
+#[Theme]
+#Current=Nordic
+#EOF
 
 echo -ne "
 -------------------------------------------------------------------------
