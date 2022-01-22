@@ -13,13 +13,6 @@ echo -ne "
 -------------------------------------------------------------------------
 "
 
-# copy over all dotfile folders
-cp -r .config/* ~/.config/
-sleep 1
-
-chmod -R +x ~/.config/bspwm
-chmod -R +x ~/.config/polybar/scripts
-
 echo -ne "
 -------------------------------------------------------------------------
                             Yay & ZSH
@@ -35,6 +28,27 @@ touch "~/.cache/zshhistory"
 git clone "https://github.com/Phaenom/zsh"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 ln -s "~/zsh/.zshrc" ~/.zshrc
+
+echo -ne "
+-------------------------------------------------------------------------
+                        Install AUR Software
+-------------------------------------------------------------------------
+"
+yay -S --noconfirm --needed - < pkg-files/aur-pkgs.txt
+
+
+echo -ne "
+-------------------------------------------------------------------------
+                        Copy Config
+-------------------------------------------------------------------------
+"
+
+# copy over all dotfile folders
+cp -r .config/* ~/.config/
+sleep 1
+
+chmod -R +x ~/.config/bspwm
+chmod -R +x ~/.config/polybar/scripts
 
 echo -ne "
 -------------------------------------------------------------------------
@@ -69,13 +83,6 @@ cd "$HOME/build"
 git clone https://github.com/vinceliuice/Layan-cursors
 cd Layan-cursors
 sudo ./install.sh
-
-echo -ne "
--------------------------------------------------------------------------
-                        Install AUR Software
--------------------------------------------------------------------------
-"
-yay -S --noconfirm --needed - < pkg-files/aur-pkgs.txt
 
 echo -ne "
 -------------------------------------------------------------------------
