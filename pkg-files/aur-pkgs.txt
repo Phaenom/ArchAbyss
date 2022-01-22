@@ -8,7 +8,6 @@ mangohud-common
 nerd-fonts-fira-code
 nordic-darker-standard-buttons-theme
 nordic-darker-theme
-nordic-kde-git
 nordic-theme
 ocs-url
 sddm-nordic-theme-git
