@@ -2,13 +2,10 @@ acpi
 alsa-plugins
 alsa-utils
 arandr
-arc-gtk-theme-eos
-arc-x-icons-theme
 archlinux-xdg-menu
 ark
 audiocd-kio
 autoconf
-autojump
 automake
 awesome-terminal-fonts
 bash-completion
@@ -105,7 +102,6 @@ pcmanfm-gtk3
 picom
 pkgconf
 polkit-gnome
-polybar
 powerdevil
 powerline-fonts
 pulseaudio

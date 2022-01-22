@@ -15,17 +15,14 @@ echo -ne "
 "
 
 # copy over all dotfile folders
-cp -r ~/ArchAbyss/.config/* ~/.config/
+cp -r .config/* ~/.config/
 sleep 1
-
 
 chmod -R +x ~/.config/bspwm
 chmod -R +x ~/.config/polybar/scripts
 
 sudo pacman -Syu --needed --noconfirm - < pkg-files/pacman-pkgs.txt
 sudo fc-cache -f -v
-
-dbus-launch dconf load / < xed.dconf
 
 echo -ne "
 -------------------------------------------------------------------------
