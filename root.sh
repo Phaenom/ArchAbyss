@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 echo -ne "
 -------------------------------------------------------------------------
  █████╗ ██████╗  ██████╗██╗  ██╗ █████╗ ██████╗ ██╗   ██╗███████╗███████╗
@@ -8,80 +9,38 @@ echo -ne "
 ██║  ██║██║  ██║╚██████╗██║  ██║██║  ██║██████╔╝   ██║   ███████║███████║
 ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝    ╚═╝   ╚══════╝╚══════╝
 -------------------------------------------------------------------------
-                    Automated Arch Linux Installer
+                    Automated Arch Linux Setup
                         SCRIPTHOME: ArchAbyss
 -------------------------------------------------------------------------
 "
 
-# copy over all dotfile folders
-cp -r .config/* ~/.config/
-sleep 1
+sudo pacman -Syu --needed --noconfirm - < pkg-files/pacman-pkgs.txt
+sudo fc-cache -f -v
 
-chmod -R +x ~/.config/bspwm
-chmod -R +x ~/.config/polybar/scripts
+cp -r .xinitrc /etc/X11/xinit/xinitrc
 
 echo -ne "
 -------------------------------------------------------------------------
-                            Yay & ZSH
+                    Enabling Login Display Manager
 -------------------------------------------------------------------------
 "
-
-cd ~
-git clone "https://aur.archlinux.org/yay.git"
-cd ~/yay
-makepkg -si --noconfirm
-cd ~
-touch "~/.cache/zshhistory"
-git clone "https://github.com/Phaenom/zsh"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-ln -s "~/zsh/.zshrc" ~/.zshrc
+systemctl enable sddm.service
 
 echo -ne "
 -------------------------------------------------------------------------
-                            POLYBAR
+                    Setting up SDDM Theme
 -------------------------------------------------------------------------
 "
-
-git clone git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
-bash polybar-themes/setup.sh
-bash ~/.config/polybar/launch.sh --cuts
-
-echo -ne "
--------------------------------------------------------------------------
-                            WALLPAPER
--------------------------------------------------------------------------
-"
-
-# Setup Wallpaper
-mkdir ~/Wallpaper
-cp -R wallpaper/* ~/Wallpaper
-nitrogen --no-recurse ~/Wallpaper/mix_4k.jpg
-
-echo -ne "
--------------------------------------------------------------------------
-                            CURSORS
--------------------------------------------------------------------------
-"
-
-# Layan Cursors
-mkdir -p $HOME/build
-cd "$HOME/build"
-git clone https://github.com/vinceliuice/Layan-cursors
-cd Layan-cursors
-sudo ./install.sh
-
-echo -ne "
--------------------------------------------------------------------------
-                        Install AUR Software
--------------------------------------------------------------------------
-"
-yay -S --noconfirm --needed - < pkg-files/aur-pkgs.txt
+cat <<EOF > /etc/sddm.conf
+[Theme]
+Current=Nordic
+EOF
 
 echo -ne "
 -------------------------------------------------------------------------
                             COMPLETE
 -------------------------------------------------------------------------
 "
-sleep 3
 
+sleep 5
 exit
